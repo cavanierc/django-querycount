@@ -106,7 +106,7 @@ class QueryCountMiddleware(MiddlewareMixin):
         if settings.DEBUG and not self._ignore_request(request.path):
             self.host = request.META.get('HTTP_HOST', None)
             self.request_path = request.path
-            self.query_string = request.META['QUERY_STRING']
+            self.query_string = request.META.get('QUERY_STRING', None)
             self._start_time = timeit.default_timer()
             self._count_queries("request")
 
